@@ -90,7 +90,7 @@ export default function RegisterPage() {
 
             <div className="space-y-2">
               <Label htmlFor="role">Account Role</Label>
-              <Select onValueChange={setRole} defaultValue={role}>
+              <Select  onValueChange={(value) => setRole(value ?? "")} defaultValue={role}>
                 <SelectTrigger>
                   <SelectValue placeholder="Select a role" />
                 </SelectTrigger>

@@ -31,12 +31,12 @@ export default function HomePage() {
           </CardHeader>
           <CardContent className="pt-4 pl-0 ml-0">
             <div className="flex gap-3 px-4">
-              <Button asChild className="w-1/2">
+              <Button  className="w-1/2">
                 <Link href="/register" className="w-full flex items-center justify-center">
                   Apply Now <ArrowRight className=" ml-2 w-4 h-4" />
                 </Link>
               </Button>
-              <Button asChild variant="outline" className="w-1/2">
+              <Button  variant="outline" className="w-1/2">
                 <Link href="/login" className="w-full flex items-center justify-center">Sign In</Link>
               </Button>
             </div>
@@ -55,7 +55,7 @@ export default function HomePage() {
             </CardDescription>
           </CardHeader>
           <CardContent className="pt-4">
-            <Button asChild variant="secondary" className="w-full border border-gray-500 hover:bg-black hover:text-white transition">
+            <Button  variant="secondary" className="w-full border border-gray-500 hover:bg-black hover:text-white transition">
               <Link href="/login" className="w-full flex justify-center items-center">
                 Access Dashboard <ArrowRight className="ml-2 w-4 h-4" />
               </Link>

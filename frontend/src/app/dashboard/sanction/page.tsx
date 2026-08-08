@@ -97,7 +97,7 @@ export default function SanctionPage() {
                       </Button>
                       
                       <Dialog>
-                        <DialogTrigger asChild className="w-1/2 cursor-pointer">
+                        <DialogTrigger  className="w-1/2 cursor-pointer">
                           <Button size="sm" variant="destructive" className="w-full">Reject</Button>
                         </DialogTrigger>
                         <DialogContent className="w-[90vw] max-w-[425px]">
@@ -149,7 +149,7 @@ export default function SanctionPage() {
                           </Button>
                           
                           <Dialog>
-                            <DialogTrigger asChild>
+                            <DialogTrigger >
                               <Button size="sm" variant="destructive">Reject</Button>
                             </DialogTrigger>
                             <DialogContent>

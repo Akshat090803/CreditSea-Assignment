@@ -98,7 +98,7 @@ export default function CollectionPage() {
                     </div>
 
                     <Dialog>
-                      <DialogTrigger asChild>
+                      <DialogTrigger>
                         <Button className="w-full mt-2">Record Payment</Button>
                       </DialogTrigger>
                       <DialogContent className="w-[90vw] max-w-[425px]">
@@ -155,7 +155,7 @@ export default function CollectionPage() {
                         </TableCell>
                         <TableCell>
                           <Dialog>
-                            <DialogTrigger asChild>
+                            <DialogTrigger >
                               <Button size="sm">Record Payment</Button>
                             </DialogTrigger>
                             <DialogContent>

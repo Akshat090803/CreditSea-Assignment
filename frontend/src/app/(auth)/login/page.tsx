@@ -18,23 +18,23 @@ export default function LoginPage() {
   const router = useRouter();
   const setAuth = useAuthStore((state) => state.setAuth);
 
-
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
 
     try {
       const response = await api.post("/auth/login", { email, password });
-      const { user,role } = response.data;
+      const { user, role } = response.data;
       
-      setAuth(user,role);
+  
+      setAuth(user, role);
       
       toast.add({
         title: "Login Successful",
         description: `Welcome back! You are logged in as ${role}.`,
       });
 
-      // Redirect based on role[cite: 1]
+      // Redirect based on role
       if (role === "Borrower") {
         router.push("/apply");
       } else {
@@ -42,7 +42,7 @@ export default function LoginPage() {
       }
     } catch (error: any) {
       toast.add({
-        type:"error",
+        type: "error",
         title: "Login Failed",
         description: error.response?.data?.error || "An unexpected error occurred.",
       });

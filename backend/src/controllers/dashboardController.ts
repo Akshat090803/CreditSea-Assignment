@@ -129,15 +129,24 @@ export const recordPayment = async (req: Request, res: Response): Promise<void> 
   }
 };
 
-export const getLoans = async (req: Request, res: Response): Promise<void> => {
+export const getLoans = async (
+  req: Request,
+  res: Response
+): Promise<void> => {
   try {
     const { status } = req.query;
-    const filter = status ? { status } : {};
-    
-    
-    const loans = await Loan.find(filter).populate('borrowerId', 'name email personalDetails.pan');
+
+    const loans =
+      typeof status === "string"
+        ? await Loan.find({ status })
+        : await Loan.find();
+
     res.status(200).json({ loans });
   } catch (error) {
-    res.status(500).json({ error: 'Internal server error' });
+    console.error("Get Loans Error:", error);
+
+    res.status(500).json({
+      error: "Internal server error",
+    });
   }
 };

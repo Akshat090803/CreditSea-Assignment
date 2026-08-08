@@ -136,10 +136,16 @@ export const getLoans = async (
   try {
     const { status } = req.query;
 
-    const loans =
-      typeof status === "string"
-        ? await Loan.find({ status })
-        : await Loan.find();
+    let query = Loan.find();
+
+    if (typeof status === "string") {
+      query = query.where("status").equals(status);
+    }
+
+    const loans = await query.populate(
+      "borrowerId",
+      "name email personalDetails.pan"
+    );
 
     res.status(200).json({ loans });
   } catch (error) {

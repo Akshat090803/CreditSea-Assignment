@@ -16,6 +16,7 @@ export default function CollectionPage() {
   const [loading, setLoading] = useState(true);
   const [utrNumber, setUtrNumber] = useState("");
   const [paymentAmount, setPaymentAmount] = useState("");
+  const [openDialog, setOpenDialog] = useState<string | null>(null);
 
   const fetchActiveLoans = async () => {
     try {
@@ -52,6 +53,7 @@ export default function CollectionPage() {
       
       setUtrNumber("");
       setPaymentAmount("");
+      setOpenDialog(null);
       fetchActiveLoans(); // Refresh the list to remove closed loans
     } catch (error: any) {
       toast.add({ 
@@ -97,7 +99,11 @@ export default function CollectionPage() {
                       </span>
                     </div>
 
-                    <Dialog>
+                    <Dialog
+                     open={openDialog === loan._id}
+  onOpenChange={(open) => {
+    setOpenDialog(open ? loan._id : null);
+  }}>
                       <DialogTrigger>
                         <Button className="w-full mt-2">Record Payment</Button>
                       </DialogTrigger>
@@ -154,7 +160,10 @@ export default function CollectionPage() {
                           ₹{(loan.totalRepayment || 0).toFixed(2)}
                         </TableCell>
                         <TableCell>
-                          <Dialog>
+                          <Dialog  open={openDialog === loan._id}
+  onOpenChange={(open) => {
+    setOpenDialog(open ? loan._id : null);
+  }}>
                             <DialogTrigger >
                               <Button size="sm">Record Payment</Button>
                             </DialogTrigger>

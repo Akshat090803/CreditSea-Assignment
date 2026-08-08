@@ -25,9 +25,9 @@ export default function LoginPage() {
 
     try {
       const response = await api.post("/auth/login", { email, password });
-      const { role } = response.data;
+      const { user,role } = response.data;
       
-      setAuth(role);
+      setAuth(user,role);
       
       toast.add({
         title: "Login Successful",

@@ -15,6 +15,7 @@ export default function SanctionPage() {
   const [loans, setLoans] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const [rejectionReason, setRejectionReason] = useState("");
+  const [openDialog, setOpenDialog] = useState<string | null>(null);
 
   const fetchLoans = async () => {
     try {
@@ -43,6 +44,7 @@ export default function SanctionPage() {
       await api.put(`/dashboard/sanction/${loanId}`, { status, rejectionReason });
       toast.add({ title: `Loan ${status}`, description: `The loan has been ${status.toLowerCase()}.` });
       setRejectionReason("");
+        setOpenDialog(null);
       fetchLoans(); // Refresh the list
     } catch (error: any) {
       toast.add({ type: "error", title: "Action Failed", description: error.response?.data?.error });
@@ -96,7 +98,11 @@ export default function SanctionPage() {
                         Approve
                       </Button>
                       
-                      <Dialog>
+                      <Dialog 
+                      open={openDialog === loan._id}
+  onOpenChange={(open) => {
+    setOpenDialog(open ? loan._id : null);
+  }}>
                         <DialogTrigger  className="w-1/2 cursor-pointer">
                           <Button size="sm" variant="destructive" className="w-full">Reject</Button>
                         </DialogTrigger>
@@ -148,7 +154,11 @@ export default function SanctionPage() {
                             Approve
                           </Button>
                           
-                          <Dialog>
+                          <Dialog
+                          open={openDialog === loan._id}
+  onOpenChange={(open) => {
+    setOpenDialog(open ? loan._id : null);
+  }}>
                             <DialogTrigger >
                               <Button size="sm" variant="destructive">Reject</Button>
                             </DialogTrigger>
